@@ -1,0 +1,8 @@
+# TEM ALGUM ERRO EU NAO SEI PQ
+
+## só pra lembrar os comandos:
+
+```bash
+npm i
+```
+
