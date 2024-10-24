@@ -41,6 +41,33 @@
     const form = document.querySelector('form')
     form.addEventListener('submit', e => e.preventDefault())
     form.btRegister.addEventListener('click', () => window.location.href = 'registrar.html')
+
+    //login (copiado de registrar.html)//
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      
+      if (form.email.value.trim() === ''
+        || form.password.value.trim() === ''
+      )
+        return alert('Preencha todos os campos')
+
+      const url = '/user'
+      const method = 'GET'
+      const headers = { 'Content-Type': 'application/json' }
+      const body = JSON.stringify({
+        email: form.email.value
+      })
+      const response = await fetch(url, { method, headers })
+      const dataResponse = await response.json()
+
+      if (!response.ok) {
+        console.error(dataResponse)
+        return alert('Erro de servidor ao logar usuário, maiores detalhes no console!')
+      }
+
+      alert('Usuário logado com sucesso!')
+    })
   </script>
 </body>
 
