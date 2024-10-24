@@ -18,6 +18,9 @@
       aut sit est veritatis nobis architecto et nesciunt, fuga animi ad ratione, accusantium dolores ipsa aperiam.</p>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum consequuntur, harum accusamus similique molestias
       aut sit est veritatis nobis architecto et nesciunt, fuga animi ad ratione, accusantium dolores ipsa aperiam.</p>
+    <button type="submit" class="otherpage" id="btPublic">Página Pública</button>
+    <button type="submit" class="otherpage" id="btPrivate">Página Privada</button>
+    <p><button type="submit" class="otherpage" id="btUser">Entrar em /user</button></p>
   </div>
 
   <div class="login-form">
@@ -41,7 +44,11 @@
     const form = document.querySelector('form')
     form.addEventListener('submit', e => e.preventDefault())
     form.btRegister.addEventListener('click', () => window.location.href = 'registrar.html')
-
+    btPublic.addEventListener('click', () => window.location.href = 'acesso-publico.html')
+    btPrivate.addEventListener('click', () => window.location.href = 'acesso-privado.html')
+    
+    btUser.addEventListener('click', () => window.location.href = 'user')//temporário. remover após teste.
+    
     //login (copiado de registrar.html)//
 
     form.addEventListener('submit', async (e) => {
@@ -52,19 +59,23 @@
       )
         return alert('Preencha todos os campos')
 
-      const url = '/user'
-      const method = 'GET'
+      const url = '/token'
+      const method = 'POST'
       const headers = { 'Content-Type': 'application/json' }
       const body = JSON.stringify({
-        email: form.email.value
+        email: form.email.value,
+        password: form.password.value
       })
-      const response = await fetch(url, { method, headers })
+
+      const response = await fetch(url, { method, headers, body })
       const dataResponse = await response.json()
 
       if (!response.ok) {
         console.error(dataResponse)
         return alert('Erro de servidor ao logar usuário, maiores detalhes no console!')
       }
+
+      localStorage.setItem("token", dataResponse.token)
 
       alert('Usuário logado com sucesso!')
     })

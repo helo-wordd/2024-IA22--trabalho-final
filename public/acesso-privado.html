@@ -1,11 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privado</title>
+  <link rel="stylesheet" href="assets/list.css">
 </head>
+
 <body>
   <h1>Aqui qualquer somente pessoas logadas podem acessar</h1>
+
+
+  <div class="login-form">
+    <form>
+      <div>
+        <label>Nome do Usuário</label>
+        <input type="text" name="name" placeholder="Nome do Usuário">
+      </div>
+      <div>
+        <label>Email do Usuário</label>
+        <input type="text" name="email" placeholder="Email do Usuário">
+      </div>
+      <div>
+        <label>Senha do Usuário</label>
+        <input type="password" name="password" placeholder="Digite sua senha">
+      </div>
+    </form>
+  </div>
+
+
+
+
+  <script>
+    const mainForm = document.querySelector('form')
+
+    void async function () {
+      const token = localStorage.getItem("token")
+
+      const response = await fetch("/user", {
+        headers: { "Authorization": token }
+      })
+      
+      const users = await response.json()
+      
+      users.forEach(user => {
+        const newForm = mainForm.cloneNode(true)
+        newForm.dataset.id = user.id
+        newForm.name.value = user.name
+        newForm.email.value = user.email
+        newForm.password.value = user.password
+        newForm.id.readOnly = true
+        mainForm.before(newForm)
+      })
+      
+      console.log(users)
+
+    }()
+
+  </script>
+
 </body>
+
 </html>

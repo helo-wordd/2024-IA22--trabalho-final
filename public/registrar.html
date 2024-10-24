@@ -45,6 +45,10 @@
     </form>
   </div>
   <script>
+
+    form.btCancelar.addEventListener('click', () => window.location.href = '/')
+
+
     const form = document.querySelector('form')
 
     const verifyMail = (email) => {
@@ -88,8 +92,6 @@
       alert('Usuário cadastrado com sucesso!')
       window.location.href = '/'
     })
-
-    form.btCancelar.addEventListener('click', () => window.location.href = '/')
 
     
   </script>

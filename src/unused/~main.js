@@ -1,4 +1,4 @@
-const mainForm = document.querySelector('form')
+// const mainForm = document.querySelector('form')
 
 // void async function () {
 //   const response = await fetch('/users')
@@ -140,5 +140,21 @@ document.addEventListener('submit', async (event) => {
     mainForm.before(newForm)
     */
     return
+
+
+
+
+
+    //ignore:
+
+    const url = '/token/verify'
+    const method = 'POST'
+    const headers = { 
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
+    }
+
+    const response = await fetch(url, { method, headers })
+    const dataResponse = await response.json()
   }
 })
