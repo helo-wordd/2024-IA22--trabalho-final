@@ -4,20 +4,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aprendendo a Utilizar o JWT</title>
+  <title>Cadastro</title>
   <link rel="stylesheet" href="assets/login.css">
 </head>
 
 <body>
 
   <div class="info">
-    <h1>Login Maroto</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum consequuntur, harum accusamus similique molestias
-      aut sit est veritatis nobis architecto et nesciunt, fuga animi ad ratione, accusantium dolores ipsa aperiam.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum consequuntur, harum accusamus similique molestias
-      aut sit est veritatis nobis architecto et nesciunt, fuga animi ad ratione, accusantium dolores ipsa aperiam.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum consequuntur, harum accusamus similique molestias
-      aut sit est veritatis nobis architecto et nesciunt, fuga animi ad ratione, accusantium dolores ipsa aperiam.</p>
+    <h1>Registro Maroto</h1>
+    <p>O cadastro não é apenas uma tarefa de rotina; é um momento crucial que marca o início de um novo capítulo em
+      sua vida. Ao preencher os campos obrigatórios, pense em cada informação como uma chave que abre novas
+      oportunidades e conexões. Com cada detalhe que fornecer, você estará criando um caminho para experiências que
+      podem enriquecer sua jornada. Se você enfrentar algum desafio durante o processo de cadastro, lembre-se de que
+      todo grande empreendimento tem seus obstáculos. Aceite esses momentos como parte de seu crescimento e saiba que
+      as recompensas que o aguardam valem o esforço.</p>
+    <p>O ato de se cadastrar representa um compromisso de explorar o desconhecido e abraçar novas aventuras. Ao dar
+      esse passo, imagine as portas que se abrirão para você - sejam elas novas amizades, conhecimentos ou
+      oportunidades de crescimento pessoal. Cada informação que você envia é um bloco de construção para um futuro
+      cheio de promessas. Caso encontre obstáculos ou hesitações, veja-os como convites para refletir sobre o que você
+      realmente busca. O processo pode demorar um pouco, mas a jornada que se desenrola depois que você se cadastra
+      será rica e gratificante.</p>
+    <p>Ao se cadastrar, você está dando um passo ousado para transformar possibilidades em realidades. Esse momento
+      significa sua disposição de se envolver com o mundo ao seu redor e de criar um espaço que reflita seus
+      interesses e aspirações. Ao navegar pelo formulário de cadastro, lembre-se de que cada detalhe contribui para
+      a tapeçaria exclusiva de sua jornada. Se você se deparar com algum problema, considere-o como uma lição valiosa
+      que só aumentará sua compreensão do processo. No final, sua decisão de se cadastrar é o primeiro de muitos passos
+      corajosos em direção a um futuro cheio de potencial e descobertas.</p>
   </div>
 
   <div class="login-form">
@@ -40,16 +52,15 @@
       </div>
       <div>
         <button type="submit" class="unelevated" id="btCancelar">Cancelar</button>
-        <button type="submit">Cadastrar</button>
+        <button type="submit" id="btCadastrar">Cadastrar</button>
       </div>
     </form>
   </div>
   <script>
+   
+    const form = document.querySelector('form')
 
     form.btCancelar.addEventListener('click', () => window.location.href = '/')
-
-
-    const form = document.querySelector('form')
 
     const verifyMail = (email) => {
       const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i
@@ -74,7 +85,8 @@
 
       const url = '/user'
       const method = 'POST'
-      const headers = { 'Content-Type': 'application/json' }
+      const token = localStorage.getItem("token")
+      const headers = { 'Content-Type': 'application/json', 'Authorization': token }
       const body = JSON.stringify({
         name: form.name.value,
         email: form.email.value,
@@ -86,11 +98,22 @@
 
       if (!response.ok) {
         console.error(dataResponse)
-        return alert('Erro de servidor ao cadastrar usuário, maiores detalhes no console!')
+        alert('Erro de servidor ao cadastrar usuário!')
+        return window.location.href = '/'
       }
 
-      alert('Usuário cadastrado com sucesso!')
-      window.location.href = '/'
+      const rnum = Math.floor(Math.random() * 5)
+      if(rnum == 0)
+        alert('Você criou sua conta com sucesso; agora aproveite as oportunidades que estão por vir')
+      else if(rnum == 1)
+        alert('Com sua conta agora estabelecida, novas possibilidades estão ao seu alcance - dê o próximo passo com confiança')
+      else if(rnum == 2)
+        alert('Parabéns por criar sua conta; o mundo agora está aberto para você explorar e descobrir')
+      else if(rnum == 3)
+        alert('Depois de criar sua conta, você está no limiar de aventuras emocionantes - atreva-se a passar por elas')
+      else if(rnum == 4)
+        alert('Sua nova conta marca um novo começo; confie na jornada que está prestes a se desenrolar')
+      window.location.href = 'registrar.html'
     })
 
     

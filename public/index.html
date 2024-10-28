@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aprendendo a Utilizar o JWT</title>
+  <title>Login</title>
   <link rel="stylesheet" href="assets/login.css">
 </head>
 
@@ -12,15 +12,21 @@
 
   <div class="info">
     <h1>Login Maroto</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum consequuntur, harum accusamus similique molestias
-      aut sit est veritatis nobis architecto et nesciunt, fuga animi ad ratione, accusantium dolores ipsa aperiam.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum consequuntur, harum accusamus similique molestias
-      aut sit est veritatis nobis architecto et nesciunt, fuga animi ad ratione, accusantium dolores ipsa aperiam.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum consequuntur, harum accusamus similique molestias
-      aut sit est veritatis nobis architecto et nesciunt, fuga animi ad ratione, accusantium dolores ipsa aperiam.</p>
-    <button type="submit" class="otherpage" id="btPublic">Página Pública</button>
-    <button type="submit" class="otherpage" id="btPrivate">Página Privada</button>
-    <p><button type="submit" class="otherpage" id="btUser">Entrar em /user</button></p>
+    <p>Ao se preparar para fazer o login, lembre-se de que esse momento simboliza o início de uma jornada repleta de
+      oportunidades e descobertas. Cada pressionamento de tecla é um passo para desbloquear o potencial que está ao
+      seu alcance. Caso encontre obstáculos ao longo do caminho, deixe que eles sirvam como lembretes gentis de que a
+      paciência e a persistência são seus maiores aliados. Aceite cada login como uma chance de se conectar, aprender e
+      crescer, pois toda grande aventura começa com um simples ato de acesso.</p>
+    <p>Fazer login é mais do que apenas inserir suas credenciais; é um convite para explorar um mundo adaptado às suas
+      aspirações e sonhos. Ao digitar seu nome de usuário e senha, visualize as portas que se abrirão para novas
+      experiências, conexões e percepções. Se você enfrentar desafios ou esquecer senhas, veja-os como oportunidades de
+      reflexão e crescimento. Lembre-se de que cada login bem-sucedido o aproxima da realização de suas metas, e a
+      jornada é tão importante quanto o destino.</p>
+    <p>Ao fazer login, você está entrando em um reino onde as possibilidades são abundantes e a criatividade flui. Cada
+      vez que acessar sua conta, considere isso como uma chance de se envolver com o universo de uma forma
+      significativa. Se você encontrar erros de login, pare um momento para respirar e recalibrar-se; esses momentos
+      podem levar a uma maior compreensão e resiliência. Lembre-se de que cada login é um novo começo, cheio de
+      potencial e promessa, esperando que você o abrace de braços abertos.</p>
   </div>
 
   <div class="login-form">
@@ -34,22 +40,18 @@
         <input type="password" name="password" placeholder="Digite sua senha">
       </div>
       <div>
-        <button type="submit" class="unelevated">recuperar senha</button>
-        <button type="submit" class="unelevated" id="btRegister">cadastra-se</button>
-        <button type="submit">Entrar</button>
+        <button type="submit" class="unelevated">Recuperar Senha</button>
+        <button type="submit" class="unelevated" id="btRegister">Cadastrar</button>
+        <button type="submit" id="btLogin">Entrar</button>
       </div>
     </form>
   </div>
   <script>
     const form = document.querySelector('form')
     form.addEventListener('submit', e => e.preventDefault())
+
     form.btRegister.addEventListener('click', () => window.location.href = 'registrar.html')
-    btPublic.addEventListener('click', () => window.location.href = 'acesso-publico.html')
-    btPrivate.addEventListener('click', () => window.location.href = 'acesso-privado.html')
-    
-    btUser.addEventListener('click', () => window.location.href = 'user')//temporário. remover após teste.
-    
-    //login (copiado de registrar.html)//
+        
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault()
@@ -72,12 +74,45 @@
 
       if (!response.ok) {
         console.error(dataResponse)
-        return alert('Erro de servidor ao logar usuário, maiores detalhes no console!')
+        const rnum = Math.floor(Math.random() * 5)
+        if(rnum == 0)
+          alert('Sua próxima oportunidade está à sua espera; verifique novamente seu e-mail e senha para abrir novas portas')
+        else if(rnum == 1)
+          alert('Um momento de cautela pode levar a grandes recompensas; certifique-se de que seu e-mail e senha sejam inseridos corretamente')
+        else if(rnum == 2)
+          alert('O caminho para novas conexões começa com as credenciais corretas; verifique seu e-mail e senha')
+        else if(rnum == 3)
+          alert('Grandes coisas estão no horizonte; apenas certifique-se de que seu e-mail e senha estejam em ordem para acessá-las')
+        else if(rnum == 4)
+          alert('Toda aventura começa com uma simples etapa; digite corretamente seu e-mail e senha para começar sua jornada')
+        return
       }
 
       localStorage.setItem("token", dataResponse.token)
 
-      alert('Usuário logado com sucesso!')
+      const rnum = Math.floor(Math.random() * 10)
+      if(rnum == 0)
+        alert('O SUCESSO vem para aqueles que se preparam diligentemente e agem com coragem')
+      else if(rnum == 1)
+        alert('Seu trabalho árduo levará ao SUCESSO; mantenha o foco e continue avançando')
+      else if(rnum == 2)
+        alert('O SUCESSO está no horizonte; seu e-mail e senha foram inseridos com segurança e irão desbloquear novas oportunidades')
+      else if(rnum == 3)
+        alert('Abrace a mudança, pois ela é o caminho para o SUCESSO e para novos começos')
+      else if(rnum == 4)
+        alert('O SUCESSO segue aqueles que ouvem sua intuição; confie em seus instintos')
+      else if(rnum == 5)
+        alert('Lembre-se de que o SUCESSO é alcançado por aqueles que verificaram duas vezes o e-mail e senha inseridos antes de entrar; como você acaba de fazer')
+      else if(rnum == 6)
+        alert('Uma mentalidade positiva é o primeiro passo para o SUCESSO; acredite em si mesmo')
+      else if(rnum == 7)
+        alert('O SUCESSO não é apenas uma meta, mas uma jornada; aproveite cada momento ao longo do caminho')
+      else if(rnum == 8)
+        alert('Seu e-mail e senha estão corretos; o que abre uma nova página de SUCESSO e possibilidades a você')
+      else if(rnum == 9)
+        alert('A cada pequeno passo, você está mais perto do SUCESSO; continue avançando com determinação')
+
+      window.location.href = 'registrar.html'
     })
   </script>
 </body>

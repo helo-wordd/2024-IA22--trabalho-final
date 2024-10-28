@@ -30,9 +30,14 @@
   </div>
 
 
-
+  <div class="back">
+    <button type="submit" class="unelevated" id="btBack">Voltar</button>
+  </div>
 
   <script>
+   
+    btBack.addEventListener('click', () => window.location.href = '/')
+
     const mainForm = document.querySelector('form')
 
     void async function () {
